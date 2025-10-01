@@ -19,5 +19,20 @@ namespace KommeGåSystem
         //public bool SafetyDocs { get { return safetyDocs; } set { safetyDocs = value; }}
         public bool SafetyDocs { get; set; }
 
+        public Guest()
+        {
+            Name = "";
+            Company = "";
+            ResponsibleEmployee = "";
+            SafetyDocs = false;
+        }
+
+        public Guest(string name, string company, string responsibleEmployee, bool safetyDocs)
+        {
+            Name = name;
+            Company = company;
+            ResponsibleEmployee = responsibleEmployee;
+            SafetyDocs = safetyDocs;
+        }
     }
 }

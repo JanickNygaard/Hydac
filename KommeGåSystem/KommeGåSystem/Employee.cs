@@ -26,8 +26,8 @@ namespace KommeGåSystem
 
         public Employee(int employeeNumber, string name)
         {
-            this.employeeNumber = employeeNumber;
-            this.name = name;
+            EmployeeNumber = employeeNumber;
+            Name = name;
         }
     }
 }

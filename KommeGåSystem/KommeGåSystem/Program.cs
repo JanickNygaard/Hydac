@@ -5,6 +5,13 @@
         static void Main(string[] args)
         {
             LogBook lb = new LogBook();
+            DataHandler handler = new DataHandler("Registrations.txt");
+
+            // Create file if not already created
+            handler.CreateFile();
+            // Loading registrations
+            lb.Registrations = handler.LoadRegistrations();
+            
 
             // Employee list
             List<Employee> employees = new List<Employee>{
@@ -79,6 +86,8 @@
                     
                 }
             }
+
+            handler.SaveRegistrations(lb.Registrations);
             
         }
     }
