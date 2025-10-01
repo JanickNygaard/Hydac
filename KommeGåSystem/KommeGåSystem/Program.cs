@@ -12,7 +12,6 @@
             // Loading registrations
             lb.Registrations = handler.LoadRegistrations();
             
-
             // Employee list
             List<Employee> employees = new List<Employee>{
                 new Employee(100, "Jens Jensen"),

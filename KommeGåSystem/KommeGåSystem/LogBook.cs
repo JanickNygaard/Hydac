@@ -214,19 +214,19 @@ namespace KommeGåSystem
                 // Tjekker om medabrjdernummer findes i medabrjder liste
                 foreach (Employee employee in employeelist)
                 {
-                    if (employee.EmployeeNumber == e.EmployeeNumber)
+                    if (employee.EmployeeNumber == e.EmployeeNumber) //e er et Employee objektet som indeholder det employee number fra consolen
                     {
                         // Tjekker om medarbejder allerede er tjekket ind
                         foreach (Registration re in registrations)
                         {
                             // Iregistration holdes der både styr på medarbdjer og gæste objekter.
                             // Hvis der findes et medarbdjer objekt som er null er det en gæst. og vi går videre til næste element i listen
-
                             if (re.employee == null)
                                 continue;
+                            
                             else if (re.employee.EmployeeNumber == e.EmployeeNumber && re.Departure == tempDT)
                             {
-                                // Når medabrjderen er fundet og allerede er tjekket ind.
+                                // Når medabrjderen er fundet og allerede er tjekket ind og ikke tjekket ud.
                                 Console.WriteLine($"""
 
                                     Navn: {re.employee.Name}
@@ -241,7 +241,7 @@ namespace KommeGåSystem
                         if (!alreadyCheckedIn)
                         {
                             e.Name = employee.Name;
-                            r.Arrival = DateTime.Now;
+                            r.Arrival = DateTime.Now; // r er et Registration objekt som indeholder data for registreringen inden vi tilføje den til listen
                             r.employee = e;
                             registrations.Add(r);
 

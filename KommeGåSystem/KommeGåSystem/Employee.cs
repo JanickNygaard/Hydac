@@ -14,15 +14,12 @@ namespace KommeGåSystem
         public int EmployeeNumber { get { return employeeNumber; } set { employeeNumber = value; } }
         public string Name { get { return name; } set { name = value; } }
 
-
-
         public Employee()
         {
             employeeNumber = 0;
             name = "";
 
         }
-
 
         public Employee(int employeeNumber, string name)
         {

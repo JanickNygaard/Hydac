@@ -14,21 +14,11 @@ namespace KommeGåSystem
         public Employee? employee;
         public Guest? guest;
 
-        public DateTime Arrival
-        {
-            get { return arrival; }
-            set { arrival = value; }
-        }
-
-        public DateTime Departure
-        {
-            get { return departure; }
-            set { departure = value; }
-        }
+        public DateTime Arrival { get { return arrival; } set { arrival = value; } }
+        public DateTime Departure { get { return departure; } set { departure = value; } }
 
         public Registration()
         {
-
         }
 
         public Registration(DateTime arrival, DateTime departure, Employee? employee, Guest? guest)
