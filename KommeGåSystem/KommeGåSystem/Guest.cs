@@ -8,9 +8,16 @@ namespace KommeGåSystem
 {
     internal class Guest
     {
-        public string name;
-        public string company;
-        public string responsibleEmployee;
-        public bool safetyDocs;
+        private string name;
+        private string company;
+        private string responsibleEmployee;
+        //private bool safetyDocs;
+
+        public string Name { get { return name; } set { name = value; } }
+        public string Company { get { return company; } set { company = value; } }
+        public string ResponsibleEmployee { get { return responsibleEmployee; } set { responsibleEmployee = value; }}
+        //public bool SafetyDocs { get { return safetyDocs; } set { safetyDocs = value; }}
+        public bool SafetyDocs { get; set; }
+
     }
 }

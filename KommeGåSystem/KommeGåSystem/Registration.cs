@@ -23,19 +23,7 @@ namespace KommeGåSystem
             set { departure = value; }
         }
 
-        //public Employee? employee = new Employee();
-        //public Guest? guest = new Guest();
         public Employee? employee;
         public Guest? guest;
-
-        /*public void Arrive()
-        {
-            arrival = DateTime.Now;
-        }*/
-
-        /*public void Depart()
-        {
-            departure = DateTime.Now;
-        }*/
     }
 }

@@ -10,6 +10,8 @@ namespace KommeGåSystem
     internal class LogBook
     {
         public List<Registration> registrations = new List<Registration>();
+        
+        public List<Registration> Registrations { get {  return registrations; } set { registrations = value; } }
 
         public void ShowMenu()
         {
@@ -98,20 +100,20 @@ namespace KommeGåSystem
             Console.Clear();
             Console.WriteLine("Du har valgt: Tjek ind.");
             Console.Write("indtast navn: ");
-            g.name =  Console.ReadLine();
+            g.Name =  Console.ReadLine();
             Console.Write("indtast firma: ");
-            g.company = Console.ReadLine();
+            g.Company = Console.ReadLine();
 
             while (bTryAgain)
             {
                 Console.Write("indtast ansvarlig for besøg: ");
-                g.responsibleEmployee = Console.ReadLine();
+                g.ResponsibleEmployee = Console.ReadLine();
 
 
 
                 foreach (Employee employee in employeelist)
                 {
-                    if (employee.name == g.responsibleEmployee)
+                    if (employee.Name == g.ResponsibleEmployee)
                     {
                         r.Arrival = DateTime.Now;
                         r.guest = g;
@@ -119,17 +121,17 @@ namespace KommeGåSystem
 
                         Console.WriteLine($"""
 
-                            Navn: {g.name}
-                            Firma: {g.company}
+                            Navn: {g.Name}
+                            Firma: {g.Company}
 
                             Er nu tjekket ind.
 
                             """);
 
-                        Console.WriteLine($"Du kan nu ringe til {g.responsibleEmployee} og melde din ankomst.");
+                        Console.WriteLine($"Du kan nu ringe til {g.ResponsibleEmployee} og melde din ankomst.");
                         Console.WriteLine("Husk at tage en sikkersfolder. ");
 
-                        g.safetyDocs = true;
+                        g.SafetyDocs = true;
 
                         Console.WriteLine();
                         Console.WriteLine("Tryk på vilkårlig tast for at komme tilbage til hovedmenu.");
@@ -172,7 +174,7 @@ namespace KommeGåSystem
                 {
                     Console.WriteLine("Du har valgt: Tjek ind.");
                     Console.Write("Indtast medarbejdernummer: ");
-                    e.employeeNumber = int.Parse(Console.ReadLine());
+                    e.EmployeeNumber = int.Parse(Console.ReadLine());
                 }
                 catch
                 {
@@ -183,20 +185,20 @@ namespace KommeGåSystem
 
                 foreach (Employee employee in employeelist)
                 {
-                    if (employee.employeeNumber == e.employeeNumber)
+                    if (employee.EmployeeNumber == e.EmployeeNumber)
                     {
 
                         foreach (Registration re in registrations)
                         {
                             if (re.employee == null)
                                 continue;
-                            else if (re.employee.employeeNumber == e.employeeNumber)
+                            else if (re.employee.EmployeeNumber == e.EmployeeNumber)
                             {
 
                                 Console.WriteLine($"""
 
-                                    Navn: {re.employee.name}
-                                    Medarbdjernummer: {re.employee.employeeNumber}
+                                    Navn: {re.employee.Name}
+                                    Medarbdjernummer: {re.employee.EmployeeNumber}
                                     """);
 
                                 message = "Er allerede tjekket ind, og kan ikke tjekkes ind igen.";
@@ -205,15 +207,15 @@ namespace KommeGåSystem
                         }
                         if (!alreadyCheckedIn)
                         {
-                            e.name = employee.name;
+                            e.Name = employee.Name;
                             r.Arrival = DateTime.Now;
                             r.employee = e;
                             registrations.Add(r);
 
                             Console.WriteLine($"""
 
-                            Navn: {employee.name}
-                            Medarbdjernummer: {employee.employeeNumber}
+                            Navn: {employee.Name}
+                            Medarbdjernummer: {employee.EmployeeNumber}
 
                             Er nu tjekket ind.
 
@@ -271,14 +273,14 @@ namespace KommeGåSystem
                 {
                     if (r.employee == null)
                         continue;
-                    else if (r.employee.employeeNumber == tempEmployeeNumber && r.Departure == tempDT)
+                    else if (r.employee.EmployeeNumber == tempEmployeeNumber && r.Departure == tempDT)
                     {
                         r.Departure = DateTime.Now;
 
                         Console.WriteLine($"""
 
-                            Navn: {r.employee.name}
-                            Medarbdjernummer: {r.employee.employeeNumber}
+                            Navn: {r.employee.Name}
+                            Medarbdjernummer: {r.employee.EmployeeNumber}
 
                             Er nu tjekket ud.
 
@@ -326,14 +328,14 @@ namespace KommeGåSystem
                 {
                     if (r.guest == null)
                         continue;
-                    else if (r.guest.name == tempGuestName && r.Departure == tempDT)
+                    else if (r.guest.Name == tempGuestName && r.Departure == tempDT)
                     {
                         r.Departure = DateTime.Now;
 
                         Console.WriteLine($"""
 
-                            Navn: {r.guest.name}
-                            Firma: {r.guest.company}
+                            Navn: {r.guest.Name}
+                            Firma: {r.guest.Company}
 
                             Er nu tjekket ud.
 
@@ -378,9 +380,9 @@ namespace KommeGåSystem
                 {
                     Console.WriteLine($"""
                         #######Gæst######
-                        Navn: {r.guest.name}
-                        Firma: {r.guest.company}
-                        Ansvarlig: {r.guest.responsibleEmployee}
+                        Navn: {r.guest.Name}
+                        Firma: {r.guest.Company}
+                        Ansvarlig: {r.guest.ResponsibleEmployee}
                         Ankomst: {r.Arrival.ToString("HH:mm:ss")}
                         Afgang: {(r.Departure == DateTime.MinValue ? "" : r.Departure.ToString("HH:mm:ss"))}
 
@@ -390,8 +392,8 @@ namespace KommeGåSystem
                 {
                     Console.WriteLine($"""
                         #######Medarbejder######
-                        Navn: {r.employee.name}
-                        Medarbejdernummer: {r.employee.employeeNumber}
+                        Navn: {r.employee.Name}
+                        Medarbejdernummer: {r.employee.EmployeeNumber}
                         Ankomst: {r.Arrival.ToString("HH:mm:ss")}
                         Afgang: {(r.Departure == DateTime.MinValue ? "" : r.Departure.ToString("HH:mm:ss"))}
 

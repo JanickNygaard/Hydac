@@ -8,8 +8,13 @@ namespace KommeGåSystem
 {
     internal class Employee
     {
-        public int employeeNumber;
-        public string name;
+        private int employeeNumber;
+        private string name;
+
+        public int EmployeeNumber { get { return employeeNumber; } set { employeeNumber = value; } }
+        public string Name { get { return name; } set { name = value; } }
+
+
 
         public Employee()
         {
