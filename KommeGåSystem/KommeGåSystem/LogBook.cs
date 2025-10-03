@@ -148,8 +148,6 @@ namespace KommeGåSystem
                         Console.WriteLine($"Du kan nu ringe til {g.ResponsibleEmployee} og melde din ankomst.");
                         Console.WriteLine("Husk at tage en sikkersfolder. ");
 
-                        g.SafetyDocs = true;
-
                         Console.WriteLine();
                         Console.WriteLine("Tryk på vilkårlig tast for at komme tilbage til hovedmenu.");
                         Console.ReadKey();

@@ -11,28 +11,23 @@ namespace KommeGåSystem
         private string name;
         private string company;
         private string responsibleEmployee;
-        //private bool safetyDocs;
 
         public string Name { get { return name; } set { name = value; } }
         public string Company { get { return company; } set { company = value; } }
         public string ResponsibleEmployee { get { return responsibleEmployee; } set { responsibleEmployee = value; }}
-        //public bool SafetyDocs { get { return safetyDocs; } set { safetyDocs = value; }}
-        public bool SafetyDocs { get; set; }
 
         public Guest()
         {
             Name = "";
             Company = "";
             ResponsibleEmployee = "";
-            SafetyDocs = false;
         }
 
-        public Guest(string name, string company, string responsibleEmployee, bool safetyDocs)
+        public Guest(string name, string company, string responsibleEmployee)
         {
             Name = name;
             Company = company;
             ResponsibleEmployee = responsibleEmployee;
-            SafetyDocs = safetyDocs;
         }
     }
 }

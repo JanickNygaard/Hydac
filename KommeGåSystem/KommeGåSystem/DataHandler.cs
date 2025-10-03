@@ -71,7 +71,6 @@ namespace KommeGåSystem
                     guest.Name = regArr[4];
                     guest.Company = regArr[5];
                     guest.ResponsibleEmployee = regArr[6];
-                    guest.SafetyDocs = (regArr[7] == "" ? false : bool.Parse(regArr[7]));
 
                     registration.Arrival = DateTime.Parse(regArr[0]);
                     registration.Departure = DateTime.Parse(regArr[1]);

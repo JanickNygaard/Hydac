@@ -38,7 +38,6 @@ namespace KommeGåSystem
             // 4 = Guest name
             // 5 = company
             // 6 = responsible employee
-            // 7 = safetydocs
 
             return $"{Arrival};" +
                 $"{Departure};" +
@@ -46,8 +45,7 @@ namespace KommeGåSystem
                 $"{(employee == null ? "" : employee.EmployeeNumber)};" +
                 $"{(guest == null ? "" : guest.Name)};" +
                 $"{(guest == null ? "" : guest.Company)};" +
-                $"{(guest == null ? "" : guest.ResponsibleEmployee)};" +
-                $"{(guest == null ? "" : guest.SafetyDocs)}";
+                $"{(guest == null ? "" : guest.ResponsibleEmployee)}";
         }
 
 
