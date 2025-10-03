@@ -10,21 +10,22 @@ namespace KommeGåSystem
     internal class LogBook
     {
         private List<Registration> registrations = new List<Registration>();
-        
-        public List<Registration> Registrations { get {  return registrations; } set { registrations = value; } }
+
+        public List<Registration> Registrations { get { return registrations; } set { registrations = value; } }
 
         public void ShowMenu()
         {
             // Viser hovedmenu
             Console.Clear();
             Console.WriteLine("""
-                Velkommen til min virksomhed.
-                Vælg en af følgende muligheder:
-                1. Medarbedjer
-                2. Gæst
+                Velkommen til HYDAC.
 
+                Dette er vores komme-gå-system, så vi altid ved, hvem der befinder sig i bygningen.
+                Dette er nødvendigt af sikkerhedshensyn, og du bedes derfor tjekke ind herunder. 
 
-                0. Luk system
+                Vælg en af følgende muligheder
+                Tast 1, hvis du er medarbejder
+                Tast 2, hvis du er gæst
 
                 """);
         }
@@ -34,14 +35,18 @@ namespace KommeGåSystem
             // Viser medarbejdermenu
             Console.Clear();
             Console.WriteLine("""
-                Du har valgt Medarbejder.
-                Vælg en af følgende muligheder
-                1. Tjek ind
-                2. Tjek ud
-                3. Overblik
+                Du har valgt, at du er medarbejder.
+
+                Hvis dette er korrekt, kan du vælge en af nedenstående muligheder. 
+                Ellers tryk på 0 for at vende tilbage til hovedmenuen.
+
+                Er du medarbejder, skal du vælge en af følgende muligheder
+                Tast 1 for at tjekke ind
+                Tast 2 for at tjekke ud
+                Tast 3 for at få et overblik over, hvem der er i bygningen
 
 
-                0. Tilbage til hoved menu
+                Tast 0 for at gå tilbage til hovedmenuen
 
                 """);
         }
@@ -51,13 +56,17 @@ namespace KommeGåSystem
             // Viser gæstmenu
             Console.Clear();
             Console.WriteLine("""
-                Du har valgt Gæst.
-                Vælg en af følgende muligheder
-                1. Tjek ind
-                2. Tjek ud
+                Du har valgt, at du er gæst.
+
+                Hvis dette er korrekt, kan du vælge en af nedenstående muligheder. 
+                Ellers tryk på 0 for at vende tilbage til hovedmenuen.
+
+                Er du gæst, skal du vælge en af følgende muligheder
+                Tast 1 for at tjekke ind
+                Tast 2 for at tjekke ud
                 
 
-                0. Tilbage til hoved menu
+                Tast 0 for at gå tilbage til hovedmenuen
 
                 """);
         }
@@ -78,7 +87,7 @@ namespace KommeGåSystem
 
                 if (!itemOK)
                 {
-                    Console.WriteLine("Der er sket en fejl. Du må kun taste heltal ind!");
+                    Console.WriteLine("Der er sket en fejl. Tast venligst kun et af de tal, der fremgår af menuen.");
                     continue;
                 }
 
@@ -110,10 +119,10 @@ namespace KommeGåSystem
 
             //clearer skærmen beder om input
             Console.Clear();
-            Console.WriteLine("Du har valgt: Tjek ind.");
-            Console.Write("indtast navn: ");
-            g.Name =  Console.ReadLine();
-            Console.Write("indtast firma: ");
+            Console.WriteLine("Du har valgt at tjekke ind.");
+            Console.Write("Indtast dit fulde navn: ");
+            g.Name = Console.ReadLine();
+            Console.Write("Indtast hvilket firma eller hvilken organisation, du kommer fra: ");
             g.Company = Console.ReadLine();
 
             // While loop kører så længe bTryAgain er true
@@ -121,7 +130,7 @@ namespace KommeGåSystem
             {
                 // Der spørges om ansvarlig for besøg i et while loop fordi vi tjekker op mod vores
                 // medarbejder liste om den ansatte eksisterer
-                Console.Write("indtast ansvarlig for besøg: ");
+                Console.Write("Indtast den HYDAC-medarbejder, der er ansvarlig for dit besøg: ");
                 g.ResponsibleEmployee = Console.ReadLine();
 
 
@@ -135,21 +144,13 @@ namespace KommeGåSystem
                         r.guest = g;
                         registrations.Add(r);
 
-                        
-                        Console.WriteLine($"""
 
-                            Navn: {g.Name}
-                            Firma: {g.Company}
-
-                            Er nu tjekket ind.
-
-                            """);
-
+                        Console.WriteLine($"{g.Name} fra {g.Company} er nu tjekket ind.");
+                        Console.WriteLine();
                         Console.WriteLine($"Du kan nu ringe til {g.ResponsibleEmployee} og melde din ankomst.");
                         Console.WriteLine("Husk at tage en sikkersfolder. ");
-
                         Console.WriteLine();
-                        Console.WriteLine("Tryk på vilkårlig tast for at komme tilbage til hovedmenu.");
+                        Console.WriteLine("Tryk på en vilkårlig tast for at komme tilbage til hovedmenu.");
                         Console.ReadKey();
                         return;
                     }
@@ -157,7 +158,7 @@ namespace KommeGåSystem
 
                 }
                 // Hvis ansvarlig for besøg ikke blev fundet kan man prøve igen eller hoppe tilbage til hovedmenu.
-                Console.Write("Medarbejder ikke fundet. Prøv igen? [ja/nej]: ");
+                Console.Write("Den medarbejder, du har indtastet, blev ikke fundet. Vil du prøve igen? Skriv ja/nej: ");
 
                 string tryAgain = Console.ReadLine();
 
@@ -176,7 +177,7 @@ namespace KommeGåSystem
         public void EmployeeRegistration(List<Employee> employeelist)
         {
             bool bTryAgain = true;
-            
+
             // instanterer objekter
             Employee e = new Employee();
             Registration r = new Registration();
@@ -198,13 +199,13 @@ namespace KommeGåSystem
                 // Og her fanges den exception som Visual studio trower til os, som vi håndterer
                 try
                 {
-                    Console.WriteLine("Du har valgt: Tjek ind.");
-                    Console.Write("Indtast medarbejdernummer: ");
+                    Console.WriteLine("Du har valgt at tjekke ind.");
+                    Console.Write("Indtast dit medarbejdernummer: ");
                     e.EmployeeNumber = int.Parse(Console.ReadLine());
                 }
                 catch
                 {
-                    Console.WriteLine("Kun heltal er tilladt. Tryk på vilkårlig tast for at prøve igen.");
+                    Console.WriteLine("Dit medarbejdernummer består kun af tal. Tryk på en vilkårlig tast for at prøve igen.");
                     Console.ReadKey();
                     continue;
                 }
@@ -221,17 +222,19 @@ namespace KommeGåSystem
                             // Hvis der findes et medarbdjer objekt som er null er det en gæst. og vi går videre til næste element i listen
                             if (re.employee == null)
                                 continue;
-                            
+
                             else if (re.employee.EmployeeNumber == e.EmployeeNumber && re.Departure == tempDT)
                             {
                                 // Når medabrjderen er fundet og allerede er tjekket ind og ikke tjekket ud.
                                 Console.WriteLine($"""
-
-                                    Navn: {re.employee.Name}
-                                    Medarbdjernummer: {re.employee.EmployeeNumber}
+                                    
+                                    Medarbejder {re.employee.Name}
+                                    Medarbedjernummer {re.employee.EmployeeNumber}
+                                    
                                     """);
+                                    
 
-                                message = "Er allerede tjekket ind, og kan ikke tjekkes ind igen.";
+                                message = "er allerede tjekket ind, og kan ikke tjekkes ind igen.";
                                 alreadyCheckedIn = true;
                             }
                         }
@@ -245,21 +248,21 @@ namespace KommeGåSystem
 
                             Console.WriteLine($"""
 
-                            Navn: {employee.Name}
-                            Medarbdjernummer: {employee.EmployeeNumber}
+                            {employee.Name} med medarbejdernummer {employee.EmployeeNumber} er nu tjekket ind. 
+                            
+                            Velkommen til og hav en dejlig dag.
 
-                            Er nu tjekket ind.
-
+                            Tryk på en vilkårlig tast for at komme tilbage til hovedmenuen.
                             """);
-                            Console.WriteLine("Tryk på vilkårlig tast for at komme tilbage til hovedmenu.");
+                            Console.WriteLine();
                             Console.ReadKey();
                             return;
                         }
-                        
+
                     }
                 }
                 // Hvis medarbejder ikke blev fundet kan man prøve igen eller hoppe tilbage til hovedmenu.
-                Console.Write(message + " Prøv igen? [ja/nej]: ");
+                Console.Write(message + "Vil du prøve igen? Tast ja/nej: ");
 
                 string tryAgain = Console.ReadLine();
 
@@ -293,14 +296,14 @@ namespace KommeGåSystem
                 // thrower til os hvis der bliver indtastet "ikke tal"
                 try
                 {
-                    Console.WriteLine("Du har valgt: Tjek ud.");
+                    Console.WriteLine("Du har valgt at tjekke ud.");
                     Console.Write("Indtast medarbejdernummer: ");
                     tempEmployeeNumber = int.Parse(Console.ReadLine());
 
                 }
                 catch
                 {
-                    Console.WriteLine("Kun heltal er tilladt. Tryk på vilkårlig tast for at prøve igen.");
+                    Console.WriteLine("Dit medarbejdernummer består kun af tal. Tryk på en vilkårlig tast for at prøve igen.");
                     Console.ReadKey();
                     continue;
                 }
@@ -319,13 +322,12 @@ namespace KommeGåSystem
 
                         Console.WriteLine($"""
 
-                            Navn: {r.employee.Name}
-                            Medarbdjernummer: {r.employee.EmployeeNumber}
+                            {r.employee.Name} med medarbejdernummer {r.employee.EmployeeNumber}
 
                             Er nu tjekket ud.
 
                             """);
-                        Console.WriteLine("Tryk på vilkårlig tast for at komme tilbage til hovedmenu.");
+                        Console.WriteLine("Tryk på en vilkårlig tast for at komme tilbage til hovedmenu.");
                         Console.ReadKey();
                         return;
                     }
@@ -334,9 +336,8 @@ namespace KommeGåSystem
                 // allerede er tjekket ud.
                 Console.Write("""
 
-                    Kan ikke tjekke en medarbejder ud, 
-                    som ikke har være tjekket ind eller allerede er tjekket ud.
-                    Prøv igen? [ja/nej]: 
+                    Medarbejder er enten ikke tjekket ind eller er allerede tjekket ud.
+                    Vil du prøve igen? Tast ja/nej: 
                     """);
 
                 string tryAgain = Console.ReadLine();
@@ -361,7 +362,7 @@ namespace KommeGåSystem
             while (bTryAgain)
             {
                 Console.Clear();
-                Console.WriteLine("Du har valgt: Tjek ud.");
+                Console.WriteLine("Du har valgt at tjekke ud.");
                 Console.Write("Indtast navn: ");
                 string tempGuestName = Console.ReadLine();
 
@@ -377,14 +378,8 @@ namespace KommeGåSystem
                     {
                         r.Departure = DateTime.Now;
 
-                        Console.WriteLine($"""
-
-                            Navn: {r.guest.Name}
-                            Firma: {r.guest.Company}
-
-                            Er nu tjekket ud.
-
-                            """);
+                        Console.WriteLine($"{r.guest.Name} fra {r.guest.Company} er nu tjekket ud.");
+                        Console.WriteLine();
                         Console.WriteLine("Tryk på vilkårlig tast for at komme tilbage til hovedmenu.");
                         Console.ReadKey();
                         return;
@@ -394,9 +389,8 @@ namespace KommeGåSystem
                 // allerede er tjekket ud.
                 Console.Write("""
 
-                    Kan ikke tjekke en gæst ud, 
-                    som ikke har være tjekket ind eller allerede er tjekket ud.
-                    Prøv igen? [ja/nej]: 
+                    Gæst er enten ikke tjekket ind eller er allerede tjekket ud.
+                    Vil du prøve igen? Tast ja/nej: 
                     """);
 
                 string tryAgain = Console.ReadLine();
@@ -453,7 +447,7 @@ namespace KommeGåSystem
                 }
             }
 
-            Console.WriteLine("Tryk på vilkårlig tast for at komme tilbage til hovedmenu.");
+            Console.WriteLine("Tryk på en vilkårlig tast for at komme tilbage til hovedmenu.");
             Console.ReadKey();
         }
 
