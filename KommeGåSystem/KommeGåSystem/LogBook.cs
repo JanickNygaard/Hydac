@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KommeGåSystem
 {
-    internal class LogBook
+    public class LogBook
     {
         private List<Registration> registrations = new List<Registration>();
 
@@ -412,7 +412,7 @@ namespace KommeGåSystem
         {
             // Viser overblik for dags dato
             Console.Clear();
-            Console.WriteLine($"Overblik over registreringer.");
+            Console.WriteLine($"Overblik over registreringer idag [{DateTime.Now.ToString("dd-MM-yyyy")}].");
             Console.WriteLine();
 
             // kigger registration listen igemmen for gæst og medarbejder objekter
@@ -427,8 +427,8 @@ namespace KommeGåSystem
                         Navn: {r.guest.Name}
                         Firma: {r.guest.Company}
                         Ansvarlig: {r.guest.ResponsibleEmployee}
-                        Ankomst: {r.Arrival.ToString("dd/MM/yyyy HH:mm:ss")}
-                        Afgang: {(r.Departure == DateTime.MinValue ? "" : r.Departure.ToString("dd/MM/yyyy HH:mm:ss"))}
+                        Ankomst: {r.Arrival.ToString("HH:mm:ss")}
+                        Afgang: {(r.Departure == DateTime.MinValue ? "" : r.Departure.ToString("HH:mm:ss"))}
 
                         """);
                 }
@@ -440,8 +440,8 @@ namespace KommeGåSystem
                         #######Medarbejder######
                         Navn: {r.employee.Name}
                         Medarbejdernummer: {r.employee.EmployeeNumber}
-                        Ankomst: {r.Arrival.ToString("dd/MM/yyyy HH:mm:ss")}
-                        Afgang: {(r.Departure == DateTime.MinValue ? "" : r.Departure.ToString("dd/MM/yyyy HH:mm:ss"))}
+                        Ankomst: {r.Arrival.ToString("HH:mm:ss")}
+                        Afgang: {(r.Departure == DateTime.MinValue ? "" : r.Departure.ToString("HH:mm:ss"))}
 
                         """);
                 }

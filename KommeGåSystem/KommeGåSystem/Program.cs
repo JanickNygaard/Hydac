@@ -5,7 +5,8 @@
         static void Main(string[] args)
         {
             LogBook lb = new LogBook();
-            DataHandler handler = new DataHandler("Registrations.txt");
+
+            DataHandler handler = new DataHandler($"Registrations_{DateTime.Now.ToString("dd-MM-yyyy")}.txt");
 
             // Create file if not already created
             handler.CreateFile();
@@ -15,7 +16,7 @@
             // Employee list
             List<Employee> employees = new List<Employee>{
                 new Employee(100, "Jens Jensen"),
-                new Employee(101, "Hans Hannsen"),
+                new Employee(101, "Hans Hansen"),
                 new Employee(102, "Bo Bosen"),
                 new Employee(103, "Frank Franksen")
                 };
@@ -30,6 +31,13 @@
 
                 lb.ShowMenu();
                 itemId = lb.SelectMenuItem(2);
+                
+                if (handler.DetectNewDay())
+                {
+                    handler.DataFileName = $"Registrations_{DateTime.Now.ToString("dd-MM-yyyy")}.txt";
+                    handler.CreateFile();
+                    lb.Registrations.Clear();
+                }
 
                 switch (itemId)
                 {
@@ -81,13 +89,10 @@
                             lb.GuestCheckout();
                             break;
                     }
-
-                    
                 }
-            }
 
-            handler.SaveRegistrations(lb.Registrations);
-            
+                handler.SaveRegistrations(lb.Registrations);
+            }  
         }
     }
 }

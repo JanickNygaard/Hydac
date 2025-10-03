@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KommeGåSystem
 {
-    internal class Guest
+    public class Guest
     {
         private string name;
         private string company;

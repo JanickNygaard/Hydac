@@ -8,7 +8,7 @@ using System.Threading.Channels;
 
 namespace KommeGåSystem
 {
-    internal class DataHandler
+    public class DataHandler
     {
         private string dataFileName;
 
@@ -32,9 +32,17 @@ namespace KommeGåSystem
             }
             catch
             {
-                StreamWriter sr = new StreamWriter(DataFileName);
-                sr.Close();
+                StreamWriter sw = new StreamWriter(DataFileName);
+                sw.Close();
             }
+
+        }
+
+        public bool DetectNewDay()
+        {
+            if (dataFileName.Substring(13,10) != DateTime.Now.ToString("dd-MM-yyyy"))
+                return true;
+            return false;
 
         }
 
@@ -58,7 +66,6 @@ namespace KommeGåSystem
             while (!sr.EndOfStream)
             {
                 string regString = sr.ReadLine();
-
                 string[] regArr = regString.Split(";");
 
                 Guest guest = new Guest();
@@ -91,17 +98,12 @@ namespace KommeGåSystem
                     registration = new Registration(
                     DateTime.Parse(regArr[0]),
                     DateTime.Parse(regArr[1]), employee, null);
-
                 }
 
-
                 registrations.Add(registration);
-
-
             }
 
             sr.Close();
-
             return registrations;
         }
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KommeGåSystem
 {
-    internal class Registration
+    public class Registration
     {
         private DateTime arrival = DateTime.MinValue;
         private DateTime departure = DateTime.MinValue;
@@ -47,7 +47,5 @@ namespace KommeGåSystem
                 $"{(guest == null ? "" : guest.Company)};" +
                 $"{(guest == null ? "" : guest.ResponsibleEmployee)}";
         }
-
-
     }
 }
