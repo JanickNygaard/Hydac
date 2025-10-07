@@ -6,7 +6,7 @@ namespace KommeGåSystemTest
     public sealed class Test1
     {
         [TestMethod]
-        public void CheckDetectNewDayWorks()
+        public void CheckDetectNewDay()
         {
             //ARRANGE
             DataHandler handler = new DataHandler($"Registrations_{DateTime.Now.AddDays(-1).ToString("dd-MM-yyyy")}");
@@ -16,9 +16,6 @@ namespace KommeGåSystemTest
 
             // ASSERT
             Assert.AreEqual( true, newDay );
-
-
-
         }
     }
 }

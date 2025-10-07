@@ -14,8 +14,6 @@ namespace KommeGåSystem
 
         public string DataFileName { get { return dataFileName; } set { dataFileName = value; } }
 
-
-
         public DataHandler(string dataFileName) 
         { 
             this.dataFileName = dataFileName;
