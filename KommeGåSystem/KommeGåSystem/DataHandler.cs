@@ -81,8 +81,6 @@ namespace KommeGåSystem
                     registration.Departure = DateTime.Parse(regArr[1]);
                     registration.employee = null;
                     registration.guest = guest;
-
-
                 }
                 
                 if (regArr[2] != "")
